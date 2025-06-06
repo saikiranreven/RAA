@@ -1,0 +1,7 @@
+<h2>Order List</h2>
+<ul>
+  {% for order in orders %}
+    <li>User: {{ order.user_id }} | Product: {{ order.product_id }} | Quantity: {{ order.quantity }} | Status: {{ order.status }}</li>
+  {% endfor %}
+</ul>
+<a href="/">Back to Dashboard</a>

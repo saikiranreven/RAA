@@ -1,0 +1,7 @@
+<h2>Inventory List</h2>
+<ul>
+  {% for item in inventory %}
+    <li>Product ID: {{ item.product_id }} | Quantity: {{ item.quantity }} | Location: {{ item.location }}</li>
+  {% endfor %}
+</ul>
+<a href="/">Back to Dashboard</a>

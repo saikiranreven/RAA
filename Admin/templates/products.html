@@ -1,0 +1,7 @@
+<h2>Product List</h2>
+<ul>
+  {% for product in products %}
+    <li>{{ product.name }} - {{ product.description }} - ${{ product.price }}</li>
+  {% endfor %}
+</ul>
+<a href="/">Back to Dashboard</a>
