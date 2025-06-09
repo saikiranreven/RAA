@@ -1,6 +1,120 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #eef2f7;
-  text-align: center;
-  padding-top: 50px;
+/* ----------- GLOBAL RESET ----------- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,sans-serif;
+}
+
+body{
+    background:#f9fafb;
+    color:#1f2937;
+    min-height:100vh;
+}
+
+/* ----------- TOP NAV ----------- */
+.topbar{
+    background:#2563eb;          /* vibrant blue */
+    color:#fff;
+    padding:16px 32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.topbar h1{ font-size:1.5rem; }
+
+.topbar a{
+    color:#fff;
+    margin-left:24px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.topbar a:hover{ text-decoration:underline; }
+
+/* ----------- WRAPPER ----------- */
+.wrapper{
+    width:100%;
+    max-width:1200px;
+    padding:24px;
+    margin:0 auto;
+}
+
+/* ----------- DASHBOARD LINKS ----------- */
+.dashboard-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.dashboard-links a{
+    background:#2563eb;
+    color:#fff;
+    padding:14px 24px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:600;
+    transition:background .2s;
+}
+
+.dashboard-links a:hover{ background:#1e4ed8; }
+
+/* ----------- TABLES (inventory / orders) ----------- */
+.table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:28px;
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 1px 5px rgba(0,0,0,.05);
+}
+
+.table th{
+    background:#f3f4f6;
+    padding:14px 18px;
+    text-align:left;
+    font-weight:700;
+    font-size:.95rem;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.table td{
+    padding:12px 18px;
+    border-bottom:1px solid #e5e7eb;
+    font-size:.9rem;
+}
+
+.table tr:nth-child(even){ background:#fafafa; }
+
+/* ----------- PRODUCT LIST (Admin) ----------- */
+.product-admin-card{
+    background:#fff;
+    padding:18px;
+    border-radius:8px;
+    box-shadow:0 1px 4px rgba(0,0,0,.06);
+    margin-bottom:20px;
+}
+
+.product-admin-card h3{ margin-bottom:6px; }
+
+/* ----------- STATUS BADGE (orders) ----------- */
+.badge{
+    padding:4px 10px;
+    border-radius:12px;
+    font-size:.8rem;
+    color:#fff;
+    display:inline-block;
+}
+
+.badge.pending{  background:#f59e0b; }
+.badge.shipped{  background:#22c55e; }
+.badge.cancelled{background:#ef4444; }
+
+/* ----------- RESPONSIVE ----------- */
+@media(max-width:768px){
+    .dashboard-links{ flex-direction:column; }
+    .table th, .table td{ padding:10px; font-size:.85rem; }
 }

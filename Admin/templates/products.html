@@ -1,7 +1,41 @@
-<h2>Product List</h2>
-<ul>
-  {% for product in products %}
-    <li>{{ product.name }} - {{ product.description }} - ${{ product.price }}</li>
-  {% endfor %}
-</ul>
-<a href="/">Back to Dashboard</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Products</title>
+    <link rel="stylesheet" href="/static/admin-style.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <a href="/products">Products</a>
+            <a href="/inventory">Inventory</a>
+            <a href="/orders">Orders</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Product Listings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price ($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.product_id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

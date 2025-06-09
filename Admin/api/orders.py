@@ -1,6 +1,5 @@
 from google.cloud import firestore
+db = firestore.Client()
 
 def get_all_orders():
-    db = firestore.Client()
-    docs = db.collection('orders').stream()
-    return [doc.to_dict() for doc in docs]
+    return [doc.to_dict() for doc in db.collection("orders").stream()]
