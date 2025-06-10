@@ -5,18 +5,19 @@
       "args": ["app", "deploy", "Admin/app.yaml", "--quiet"]
     },
     {
-      "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
-      "dir": "cloud_functions/update_inventory",
+      "name": "gcr.io/cloud-builders/gcloud",
+      "dir": "cloud_functions",
       "args": [
         "functions", "deploy", "update_inventory_on_order",
         "--gen2",
-        "--runtime=python310",
-        "--region=us-central1",
-        "--entry-point=update_inventory_on_order",
-        "--trigger-event-filters=type=google.cloud.firestore.document.v1.created",
-        "--trigger-event-filters=resource=projects/reliable-sight-400315/databases/(default)/documents/orders/{orderId}",
-        "--source=.",
-        "--service-account=user-app@reliable-sight-400315.iam.gserviceaccount.com"
+        "--runtime", "python310",
+        "--region", "us-central1",
+        "--entry-point", "update_inventory_on_order",
+        "--trigger-event-filters", "type=google.cloud.firestore.document.v1.created",
+        "--trigger-event-filters", "resource=projects/$PROJECT_ID/databases/(default)/documents/orders/{orderId}",
+        "--source", ".",
+        "--service-account", "user-app@$PROJECT_ID.iam.gserviceaccount.com",
+        "--quiet"
       ]
     }
   ],
