@@ -2,7 +2,9 @@
   "steps": [
     {
       "name": "gcr.io/cloud-builders/gcloud",
-      "args": ["app", "deploy", "Admin/app.yaml", "--quiet"]
+      "args": [
+        "app", "deploy", "Admin/app.yaml", "--quiet"
+      ]
     },
     {
       "name": "gcr.io/cloud-builders/gcloud",
@@ -12,16 +14,15 @@
         "--gen2",
         "--runtime", "python310",
         "--region", "us-central1",
-        "--entry-point", "update_inventory_on_order",
-        "--trigger-event-filters", "type=google.cloud.firestore.document.v1.created",
-        "--trigger-event-filters", "resource=projects/$PROJECT_ID/databases/(default)/documents/orders/{orderId}",
         "--source", ".",
-        "--service-account", "user-app@$PROJECT_ID.iam.gserviceaccount.com",
+        "--entry-point", "update_inventory_on_order",
+        "--trigger-location", "us-central1",
+        "--event-filters", "type=google.cloud.firestore.document.v1.created",
+        "--event-filters", "database=projects/$PROJECT_ID/databases/(default)",
+        "--event-filters", "document=orders/{orderId}",
         "--quiet"
       ]
     }
   ],
-  "options": {
-    "logging": "CLOUD_LOGGING_ONLY"
-  }
+  "options": { "logging": "CLOUD_LOGGING_ONLY" }
 }
