@@ -8,14 +8,14 @@
       "name": "gcr.io/cloud-builders/gcloud",
       "dir": "cloud_functions",
       "args": [
-        "functions", "deploy", "update_inventory_on_order",
-        "--gen2",
-        "--runtime", "python310",
-        "--trigger-event", "providers/cloud.firestore/eventTypes/document.create",
-        "--trigger-resource", "projects/$PROJECT_ID/databases/(default)/documents/orders/{orderId}",
-        "--region", "us-central1",
-        "--quiet"
-      ]
+  "functions", "deploy", "update_inventory_on_order",
+  "--gen2", "--runtime", "python310",
+  "--trigger-location", "us-central1",
+  "--trigger-event-filters", "type=google.cloud.firestore.document.v1.created",
+  "--trigger-event-filters", "resource=projects/$PROJECT_ID/databases/(default)/documents/orders/{orderId}",
+  "--region", "us-central1",
+  "--quiet"
+]
     }
   ],
   "timeout": "600s",
