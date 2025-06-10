@@ -1,39 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Inventory Overview</title>
-    <link rel="stylesheet" href="/static/admin-style.css">
-</head>
-<body>
-    <header>
-        <h1>Admin Dashboard</h1>
-        <nav>
-            <a href="/products">Products</a>
-            <a href="/inventory">Inventory</a>
-            <a href="/orders">Orders</a>
-        </nav>
-    </header>
-    <main>
-        <h2>Inventory Status</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>Quantity</th>
-                    <th>Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in inventory %}
-                    <tr>
-                        <td>{{ item.product_id }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.location }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </main>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Admin – Inventory{% endblock %}
+{% block content %}
+  <h2>Inventory Status</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Quantity</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in inventory %}
+      <tr>
+        <td>{{ i.product_id }}</td>
+        <td>{{ i.quantity }}</td>
+        <td>{{ i.location }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

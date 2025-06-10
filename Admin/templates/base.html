@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Admin{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <h1>Admin Dashboard</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/products">Products</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/orders">Orders</a>
+  </nav>
+</header>
+<div class="wrapper">
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>
