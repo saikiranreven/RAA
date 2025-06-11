@@ -1,5 +1,6 @@
 from google.cloud import firestore
 import functions_framework
+import json
 
 db = firestore.Client()
 
@@ -7,7 +8,13 @@ db = firestore.Client()
 def update_inventory_on_order(event):
     """Triggered when a new order is created in Firestore"""
     try:
-        fields = event.data.get("value", {}).get("fields", {})
+        # Parse the CloudEvent data properly
+        if isinstance(event.data, bytes):
+            event_data = json.loads(event.data.decode('utf-8'))
+        else:
+            event_data = event.data
+            
+        fields = event_data.get("value", {}).get("fields", {})
         if not fields:
             raise ValueError("No fields in event data")
             
