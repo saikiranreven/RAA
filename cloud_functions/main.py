@@ -1,4 +1,3 @@
-# cloud_functions/main.py
 from google.cloud import firestore
 import functions_framework
 
@@ -6,11 +5,6 @@ db = firestore.Client()
 
 @functions_framework.cloud_event
 def update_inventory_on_order(event):
-    """
-    Triggered when a new document is created in orders/{orderId}.
-    Reduces the inventory quantity of the product.
-    """
-
     data = event.data.get("value", {}).get("fields", {})
 
     if not data:

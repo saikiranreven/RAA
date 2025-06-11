@@ -13,10 +13,7 @@
         "--trigger-event", "providers/cloud.firestore/eventTypes/document.create",
         "--trigger-resource", "projects/reliable-sight-400315/databases/(default)/documents/orders/{orderId}",
         "--entry-point", "update_inventory_on_order",
-        "--region", "us-central1",
-        "--source", ".",
-        "--service-account", "user-app-sa@reliable-sight-400315.iam.gserviceaccount.com",
-        "--quiet"
+        "--region", "us-central1"
       ]
     }
   ],
