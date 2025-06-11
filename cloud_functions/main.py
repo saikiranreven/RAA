@@ -1,6 +1,5 @@
 from google.cloud import firestore
 import functions_framework
-import json
 
 db = firestore.Client()
 
@@ -8,35 +7,25 @@ db = firestore.Client()
 def update_inventory_on_order(event):
     """Triggered when a new order is created in Firestore"""
     try:
-        # Parse the CloudEvent data properly
-        if isinstance(event.data, bytes):
-            event_data = json.loads(event.data.decode('utf-8'))
-        else:
-            event_data = event.data
-            
-        fields = event_data.get("value", {}).get("fields", {})
-        if not fields:
-            raise ValueError("No fields in event data")
-            
-        pid = fields.get("product_id", {}).get("stringValue")
-        qty = int(fields.get("quantity", {}).get("integerValue", 0))
+        # Directly access the document data from the event structure
+        document_data = event.data["value"]["fields"]
         
-        if not pid or qty <= 0:
-            raise ValueError(f"Invalid product_id ({pid}) or quantity ({qty})")
-            
+        # Extract product ID and quantity
+        pid = document_data["product_id"]["stringValue"]
+        qty = int(document_data["quantity"]["integerValue"])
+        
+        # Update inventory
         inv_ref = db.collection("inventory").document(pid)
-        snap = inv_ref.get()
-        
-        if not snap.exists:
-            raise ValueError(f"Inventory not found for product {pid}")
-            
-        current_qty = snap.to_dict().get("quantity", 0)
+        current_qty = inv_ref.get().to_dict().get("quantity", 0)
         new_qty = max(current_qty - qty, 0)
         inv_ref.update({"quantity": new_qty})
         
         print(f"Inventory updated: {pid} = {current_qty} → {new_qty}")
         return f"Inventory updated for {pid}", 200
         
+    except KeyError as e:
+        print(f"Missing expected field: {str(e)}")
+        return f"Missing field: {str(e)}", 400
     except Exception as e:
         print(f"Error processing order: {str(e)}")
         return str(e), 500
