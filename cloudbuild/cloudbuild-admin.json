@@ -8,21 +8,21 @@
       "name": "gcr.io/cloud-builders/gcloud",
       "dir": "cloud_functions",
       "args": [
-        "functions", "deploy", "update_inventory_on_order",
-        "--gen2",
+        "functions", "deploy", "update_inventory",
         "--runtime", "python310",
+        "--trigger-http",
         "--region", "us-central1",
         "--source", ".",
-        "--entry-point", "update_inventory_on_order",
-        "--trigger-location", "nam5",
-        "--trigger-event-filters", "type=google.cloud.firestore.document.v1.created",
-        "--trigger-event-filters", "database=(default)",
-        "--trigger-event-filters", "document=orders/{orderId}",
-        "--service-account", "user-app@reliable-sight-400315.iam.gserviceaccount.com",
+        "--entry-point", "update_inventory",
+        "--timeout", "540s", 
+        "--memory", "512MB",
+        "--max-instances", "5",
         "--quiet"
-      ]
+      ],
+      "timeout": "600s" 
     }
   ],
+  "timeout": "1200s",  
   "options": {
     "logging": "CLOUD_LOGGING_ONLY"
   }
