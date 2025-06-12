@@ -3,23 +3,6 @@
     {
       "name": "gcr.io/cloud-builders/gcloud",
       "args": ["app", "deploy", "Admin/app.yaml", "--quiet"]
-    },
-    {
-      "name": "gcr.io/cloud-builders/gcloud",
-      "dir": "cloud_functions",
-      "args": [
-        "functions", "deploy", "update_inventory",
-        "--runtime", "python310",
-        "--trigger-http",
-        "--region", "us-central1",
-        "--source", ".",
-        "--entry-point", "update_inventory",
-        "--timeout", "540s", 
-        "--memory", "512MB",
-        "--max-instances", "5",
-        "--quiet"
-      ],
-      "timeout": "600s" 
     }
   ],
   "timeout": "1200s",  
